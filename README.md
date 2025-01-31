@@ -2,7 +2,10 @@
 
 A Chrome extension that helps you generate a ChatGPT URL (or an icon-based HTML snippet) from selected text on any webpage. It can detect light/dark mode for the extension icon and provides a single user setting to toggle between returning a fancy `<a><img></a>` snippet or a plain URL.
 
-![Screenshot](screenshot.png)
+<p align="center">
+  <img src="screenshot.png" alt="Screenshot" style="border: 2px solid black; width: 50%;">
+</p>
+
 
 ## Features
 
