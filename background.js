@@ -6,7 +6,7 @@
 const PROMPT_CHAR_LIMIT = 20000; // or any large number
 const MAX_URL_LENGTH = 8000; // also fairly large
 const FALLBACK_URL =
-  "https://chat.openai.com/?model=auto&q=Prompt+exceeded+max+URL+length";
+  "https://chatgpt.com/?q=Prompt%20exceeded%20max%20URL%20length";
 
 // ----------------------------------------------------
 // 2. Create the context menu on install
@@ -63,7 +63,7 @@ chrome.contextMenus.onClicked.addListener(async (info, tab) => {
   }
 
   // 4b. Construct the ChatGPT URL
-  const baseUrl = "https://chat.openai.com/?model=auto&q=";
+  const baseUrl = "https://chatgpt.com/?q=";
   let finalUrl = baseUrl + encodeURIComponent(truncatedPrompt);
 
   // 4c. If the URL is too long, fallback to a generic link
@@ -72,7 +72,7 @@ chrome.contextMenus.onClicked.addListener(async (info, tab) => {
   }
 
   // 4d. Decide whether to return an icon snippet or just the URL
-  const { useIconSnippet = true } = await getPreferences();
+  const { useIconSnippet = false } = await getPreferences();
   let outputText;
 
   if (useIconSnippet) {
@@ -111,7 +111,7 @@ chrome.contextMenus.onClicked.addListener(async (info, tab) => {
 async function getPreferences() {
   return new Promise((resolve) => {
     chrome.storage.sync.get(
-      { useIconSnippet: true }, // default
+      { useIconSnippet: false }, // default
       (items) => resolve(items)
     );
   });

@@ -6,9 +6,9 @@ const useIconSnippetCheckbox = document.getElementById(
 );
 const saveBtn = document.getElementById("saveBtn");
 
-// On page load, fetch existing setting (default to true)
+// On page load, fetch existing setting (default to false)
 document.addEventListener("DOMContentLoaded", () => {
-  chrome.storage.sync.get({ useIconSnippet: true }, (items) => {
+  chrome.storage.sync.get({ useIconSnippet: false }, (items) => {
     useIconSnippetCheckbox.checked = items.useIconSnippet;
   });
 });
