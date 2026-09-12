@@ -2,6 +2,8 @@
 
 A small Chrome extension that turns selected text into a shareable ChatGPT prompt URL. It can copy either the plain URL or a self-contained HTML icon link.
 
+[Install from the Chrome Web Store](https://chromewebstore.google.com/detail/bameedgeppbjnklldedkpnobambcfndm)
+
 <p align="left">
   <img src="screenshot.png" alt="Screenshot" style="width: 50%;">
 </p>
@@ -24,6 +26,12 @@ A small Chrome extension that turns selected text into a shareable ChatGPT promp
   - If disabled (the default), returns just the plain URL.
 
 ## Installation
+
+### Chrome Web Store
+
+Install the extension from the [Chrome Web Store](https://chromewebstore.google.com/detail/bameedgeppbjnklldedkpnobambcfndm).
+
+### Local development
 
 1. **Clone or Download** this repository.
 2. **Open** Chrome and navigate to `chrome://extensions/`.
@@ -60,7 +68,7 @@ Build a Chrome Web Store ZIP with:
 ./scripts/package-release.sh
 ```
 
-See the [privacy policy](PRIVACY.md), [changelog](CHANGELOG.md), and [Chrome Web Store submission notes](docs/CHROME_WEB_STORE.md) before publishing.
+See the [privacy policy](PRIVACY.md), [security policy](SECURITY.md), [third-party notices](THIRD_PARTY_NOTICES.md), [changelog](CHANGELOG.md), and [Chrome Web Store submission notes](docs/CHROME_WEB_STORE.md) before publishing.
 
 ## Notes & Limitations
 
@@ -69,4 +77,4 @@ See the [privacy policy](PRIVACY.md), [changelog](CHANGELOG.md), and [Chrome Web
 - **Privacy**: Anyone with a generated link can read its prompt. The prompt may also appear in browser history, messaging previews, or system logs.
 - **Undocumented URL Format**: ChatGPT's `?q=` parameter is not documented as a public API and may change without notice.
 - **Not Affiliated with OpenAI**: This project merely generates URLs to `chatgpt.com`; we are not sponsored or endorsed by OpenAI.
-- **Lucide**: Chat icon provided by the Lucide Icon Library: https://lucide.dev/icons/message-square-share
+- **Lucide**: The icon-link artwork is based on Lucide's [Message Square Share](https://lucide.dev/icons/message-square-share) icon. See [third-party notices](THIRD_PARTY_NOTICES.md).
