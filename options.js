@@ -5,6 +5,7 @@ const useIconSnippetCheckbox = document.getElementById(
   "useIconSnippetCheckbox"
 );
 const saveBtn = document.getElementById("saveBtn");
+const status = document.getElementById("status");
 
 // On page load, fetch existing setting (default to false)
 document.addEventListener("DOMContentLoaded", () => {
@@ -19,6 +20,9 @@ saveBtn.addEventListener("click", () => {
 
   // Store setting in chrome.storage.sync
   chrome.storage.sync.set({ useIconSnippet }, () => {
-    alert("Preferences saved!");
+    status.textContent = "Saved";
+    window.setTimeout(() => {
+      status.textContent = "";
+    }, 2000);
   });
 });

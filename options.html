@@ -5,23 +5,46 @@
     <meta charset="utf-8" />
     <title>ChatGPT Link Generator - Options</title>
     <style>
+      :root {
+        color-scheme: light dark;
+      }
+
       body {
-        font-family: sans-serif;
-        margin: 16px;
-        max-width: 600px;
+        font-family: system-ui, sans-serif;
+        margin: 24px;
+        max-width: 560px;
       }
+
+      h1 {
+        font-size: 1.4rem;
+      }
+
       label {
-        display: block;
-        margin-bottom: 8px;
+        align-items: center;
+        display: flex;
+        font-weight: 600;
+        gap: 8px;
       }
+
       .documentation {
-        border: 1px solid #ccc;
-        padding: 10px;
-        background: #f8f8f8;
+        border: 1px solid color-mix(in srgb, currentColor 25%, transparent);
+        border-radius: 8px;
+        padding: 16px;
         margin-bottom: 20px;
       }
+
       .field-group {
         margin-bottom: 16px;
+      }
+
+      code {
+        display: block;
+        margin-top: 8px;
+        overflow-wrap: anywhere;
+      }
+
+      #status {
+        margin-left: 8px;
       }
     </style>
   </head>
@@ -29,28 +52,27 @@
     <h1>ChatGPT Link Generator - Preferences</h1>
 
     <div class="documentation">
-      <h2>What This Setting Does</h2>
+      <h2>Output format</h2>
       <p>
-        <strong>Return as Icon Link?</strong>  
-        If checked, the extension copies an HTML snippet like this:  
+        Icon Link copies a self-contained HTML snippet with an inline SVG icon:
         <code>
           &lt;a href="[crafted-url]" aria-label="Open in ChatGPT"&gt;
-            &lt;img src="icons/open-in-chatgpt.svg" alt="" aria-hidden="true"&gt;
+            &lt;svg ...&gt;&lt;/svg&gt;
           &lt;/a&gt;
-        </code>  
-        If unchecked, the extension returns only the plain ChatGPT URL.
+        </code>
+        When disabled, the extension copies only the plain ChatGPT URL.
       </p>
-      <p>After making changes, click "Save Preferences" below.</p>
     </div>
 
     <div class="field-group">
       <label>
-        Return as Icon Link?
         <input id="useIconSnippetCheckbox" type="checkbox" />
+        Copy as an icon link
       </label>
     </div>
 
     <button id="saveBtn">Save Preferences</button>
+    <span id="status" role="status" aria-live="polite"></span>
 
     <script src="options.js"></script>
   </body>

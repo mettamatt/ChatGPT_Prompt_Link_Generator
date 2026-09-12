@@ -1,6 +1,6 @@
 # ChatGPT Prompt Link Generator
 
-A Chrome extension that helps you generate a ChatGPT URL (or an icon-based HTML snippet) from selected text on any webpage. It can detect light/dark mode for the extension icon and provides a single user setting to toggle between returning a fancy `<a><img></a>` snippet or a plain URL.
+A small Chrome extension that turns selected text into a shareable ChatGPT prompt URL. It can copy either the plain URL or a self-contained HTML icon link.
 
 <p align="left">
   <img src="screenshot.png" alt="Screenshot" style="width: 50%;">
@@ -9,15 +9,16 @@ A Chrome extension that helps you generate a ChatGPT URL (or an icon-based HTML 
 
 ## Features
 
-- **Context Menu Integration**: Right-click on selected text to generate a ChatGPT link.
-- **Truncation & Fallback**: If the prompt or final URL is too long, the extension automatically truncates or switches to a fallback URL.
-- **Clipboard Copy**: The generated URL or snippet is automatically copied to your clipboard.
-- **Light/Dark Mode Icons**: Dynamically switches the extension’s toolbar icon based on system theme (via a content script).
+- **One Context Menu Command**: Right-click selected text and choose **Generate ChatGPT Link**.
+- **Direct ChatGPT Links**: Generates `https://chatgpt.com/?q=URL_ENCODED_PROMPT`.
+- **Reliable Clipboard Copy**: Copies from an extension-owned offscreen document instead of injecting code into the current webpage.
+- **Minimal Website Access**: Does not request permission to read or modify every webpage.
+- **Clear Length Handling**: Warns instead of silently replacing or truncating prompts that produce overly long URLs.
 - **Simple User Preference**:
-  - **Return as Icon Link?** – If enabled, copies an HTML snippet:
+  - **Copy as an icon link** – If enabled, copies a self-contained HTML snippet with an inline SVG:
     ```html
-    <a href="[...]" aria-label="Open in ChatGPT">
-      <img src="icons/open-in-chatgpt.svg" alt="" aria-hidden="true" />
+    <a href="[...]" aria-label="Open in ChatGPT" target="_blank" rel="noopener noreferrer">
+      <svg aria-hidden="true">...</svg>
     </a>
     ```
   - If disabled (the default), returns just the plain URL.
@@ -37,14 +38,27 @@ A Chrome extension that helps you generate a ChatGPT URL (or an icon-based HTML 
 1. **Highlight** any text on a webpage.
 2. **Right-click** and select **“Generate ChatGPT Link”**.
 3. The extension:
-   - Truncates the text if it exceeds a large internal limit.
    - Builds a ChatGPT URL (`https://chatgpt.com/?q=...`).
    - Copies either the plain URL or an HTML snippet (depending on your preference) to your clipboard.
    - Shows a notification when copying is successful.
 
+### Output Preference
+
+Click the extension's toolbar icon to switch between a plain URL and the self-contained icon link. You can also open **Extension options** from `chrome://extensions/`.
+
+## Development
+
+Run the link-generation tests with:
+
+```sh
+node --test tests/link-generator.test.js
+```
+
 ## Notes & Limitations
 
-- **Chrome Only**: This extension uses Manifest V3 and `chrome.scripting.executeScript`. It may require modifications for other browsers.
+- **Chrome 109 or Later**: The extension uses the Manifest V3 Offscreen API for clipboard access.
+- **URL Length**: Prompts that create URLs longer than 8,000 characters are rejected with a notification.
+- **Privacy**: Anyone with a generated link can read its prompt. The prompt may also appear in browser history, messaging previews, or system logs.
 - **Undocumented URL Format**: ChatGPT's `?q=` parameter is not documented as a public API and may change without notice.
 - **Not Affiliated with OpenAI**: This project merely generates URLs to `chatgpt.com`; we are not sponsored or endorsed by OpenAI.
 - **Lucide**: Chat icon provided by the Lucide Icon Library: https://lucide.dev/icons/message-square-share
