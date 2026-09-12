@@ -54,6 +54,14 @@ Run the link-generation tests with:
 node --test tests/link-generator.test.js
 ```
 
+Build a Chrome Web Store ZIP with:
+
+```sh
+./scripts/package-release.sh
+```
+
+See the [privacy policy](PRIVACY.md), [changelog](CHANGELOG.md), and [Chrome Web Store submission notes](docs/CHROME_WEB_STORE.md) before publishing.
+
 ## Notes & Limitations
 
 - **Chrome 109 or Later**: The extension uses the Manifest V3 Offscreen API for clipboard access.
